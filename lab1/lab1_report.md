@@ -23,126 +23,74 @@ Date of finished: 28.04.2025
 
 ## Ход работы
 
-Работа выполнялась на ubuntu в виртуальной машине. 
+### VPN-Server
 
-После установки всех необходимых компонентов, с помощью файла .yaml была задана топология трехуровневой сети связи классического предприятия:
+Сначала была развернута виртуальная машина для vpn-server.
 
-<img src="./pic/topology.jpg">
+<img src="./pic/pic0.jpg">
 
-Далее были настроены роутер и коммутаторы с помощью следующих команд:
-(ssh admin@[ip-адрес]; пароль -- admin)
-
-### RO:
-```
-/interface vlan
-add name=RO_vlan10 vlan-id=10 interface=ether4 disabled=no
-add name=RO_vlan20 vlan-id=20 interface=ether4 disabled=no
-
-/ip address
-add address=192.168.10.1/24 interface=RO_vlan10 
-add address=192.168.20.1/24 interface=RO_vlan20 
-
-/ip dhcp-server network
-add address=192.168.10.0/24 gateway=192.168.10.1
-add address=192.168.20.0/24 gateway=192.168.20.1
-
-/ip pool
-add name=pool_vlan10 ranges=192.168.10.10-192.168.10.250
-add name=pool_vlan20 ranges=192.168.20.10-192.168.20.250
-
-/ip dhcp-server
-add name=server10 address-pool=pool_vlan10 interface=RO_vlan10 disabled=no
-add name=server20 address-pool=pool_vlan20 interface=RO_vlan20 disabled=no
-```
-
-### SW1:
-```
-/interface vlan
-add name=SW1_vlan10_1 vlan-id=10 interface=ether4 disabled=no
-add name=SW1_vlan10_2 vlan-id=10 interface=ether5 disabled=no
-add name=SW1_vlan20_1 vlan-id=20 interface=ether4 disabled=no
-add name=SW1_vlan20_2 vlan-id=20 interface=ether6 disabled=no
-
-/interface bridge
-add name=SW1_br10
-add name=SW1_br20
-
-/interface bridge port
-add interface=SW1_vlan10_1 bridge=SW1_br10
-add interface=SW1_vlan10_2 bridge=SW1_br10
-add interface=SW1_vlan20_1 bridge=SW1_br20
-add interface=SW1_vlan20_2 bridge=SW1_br20
-
-/ip dhcp-client
-add interface=SW1_br10 disabled=no
-add interface=SW1_br20 disabled=no
-```
-
-### SW2_1:
-```
-/interface vlan
-add name=SW2_1_vlan10 vlan-id=10 interface=ether4 disabled=no
-
-/interface bridge
-add name=SW2_1_br10
-
-/interface bridge port
-add interface=SW2_1_vlan10 bridge=SW2_1_br10
-add interface=ether5 bridge=SW2_1_br10
-
-/ip dhcp-client
-add interface=SW2_1_br10 disabled=no
-```
-
-### SW2_2:
-```
-/interface vlan
-add name=SW2_2_vlan20 vlan-id=20 interface=ether4 disabled=no
-
-/interface bridge
-add name=SW2_2_br20
-
-/interface bridge port
-add interface=SW2_2_vlan20 bridge=SW2_1_br20
-add interface=ether5 bridge=SW2_1_br20
-
-/ip dhcp-client
-add interface=SW2_2_br20 disabled=no
-```
-
-Настройка PC:
-(docker exec -it [id docker] sh)
+На сервер были установлены python и ansible.
 
 ```
-udhcpc -i eth3
-ifconfig eth3 up
+sudo apt update
+sudo apt install python3-pip
+sudo pip3 install ansible
 ```
 
-### Результаты пингов: 
+<img src="./pic/pic4.jpg" style="width:700px;">
 
-На скриншотах видно, что PC имеют друг к другу доступ благодаря маршрутизации, при этом SW2_1 (vlan10) не имеет доступа к PC2 (vlan20), а SW2_2 (vlan20) к PC1 (vlan10).
+### VPN-Client
 
-### RO:
+Далее былa развернута вторая виртуальная машина для vpn-client на VirtualBox. На нее был установлен CHR (RouterOS) версия 7.18.2 
 
-<img src="./pic/RO_ping.jpg" style="width:350px;">
+<img src="./pic/pic1.jpg" style="width:350px;">
 
-### SW1:
+Также были проведены настройки адаптера, чтобы был доступ в интернет.
 
-<img src="./pic/SW1_ping.jpg" style="width:350px;">
+<img src="./pic/pic2.jpg" style="width:600px;">
 
-### SW2_1:
+При входе в микротик вводятся логин (admin) и пароль (пустая строка). Далее устанавливается новый пароль.
 
-<img src="./pic/SW2_1_ping.jpg" style="width:350px;">
+Проверим, что есть доступ в интернет.
 
-### SW2_2:
+<img src="./pic/pic3.jpg" style="width:600px;">
 
-<img src="./pic/SW2_2_ping.jpg" style="width:350px;">
 
-### PC1:
+### Создание VPN туннеля
 
-<img src="./pic/PC1_ping.jpg" style="width:350px;">
+Для организации VPN туннеля был использован Wireguard. 
 
-### PC2:
+#### Настройка сервера
 
-<img src="./pic/PC2_ping.jpg" style="width:350px;">
+Установим Wireguard и сгенерируем приватный и публичный ключи.
+
+```
+sudo apt update
+sudo apt install wireguard iptables
+wg genkey | sudo tee /etc/wireguard/private.key | wg pubkey | sudo tee /etc/wireguard/public.key
+```
+
+ Также прописываем конфигурационный файл в `/etc/wireguard/wg0.conf`:
+
+<img src="./pic/pic5.jpg" style="width:600px;">
+
+Проверим статус Wireguard и состояние интерфейса:
+
+<img src="./pic/pic6.jpg" style="width:600px;">
+
+<img src="./pic/pic7.jpg" style="width:600px;">
+
+
+#### Настройка клиента
+
+Настроим конфигурацию клиента, создадим интерфейс wg0, настроим ключи, порт и адресс.
+
+<img src="./pic/pic8.jpg" style="width:600px;">
+
+
+### Результат:
+
+#### Server -> Client:
+
+<img src="./pic/pic9.jpg" style="width:600px;">
 
