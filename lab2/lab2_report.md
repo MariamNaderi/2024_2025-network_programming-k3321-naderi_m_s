@@ -25,7 +25,7 @@ Date of finished: 30.05.2025
 
 ### Схема
 
-<img src="./pic/topology.jpg">
+<img src="./pic/topology.jpg" style="width:400px;">
 
 
 
