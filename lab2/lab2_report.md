@@ -10,7 +10,7 @@ Group: K3321
 
 Author: Naderi Mariam Shakhovna
 
-Lab: Lab1
+Lab: Lab2
 
 Date of create: 15.05.2025
 
