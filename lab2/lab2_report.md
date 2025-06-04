@@ -27,5 +27,8 @@ Date of finished: 30.05.2025
 
 <img src="./pic/topology.jpg" style="width:400px;">
 
+### Настройка второго VPN-тунеля
+
+<img src="./pic/pic1.png" style="width:400px;">
 
 
