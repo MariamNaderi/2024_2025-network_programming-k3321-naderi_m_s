@@ -1,0 +1,102 @@
+ok: [chr_1] => {
+    "export_conf": {
+        "changed": true,
+        "failed": false,
+        "stdout": [
+            "# 2025-06-04 22:40:27 by RouterOS 7.19\n# system id = xAXoqXaIYUJ\n#\n/interface bridge\nadd name=loopback\n/interface ethernet\nset [ find default-name=ether1 ] disable-running-check=no\n/interface wireguard\nadd listen-port=34872 mtu=1420 name=wg0\n/port\nset 0 name=serial0\n/routing ospf instance\nadd disabled=no name=ospf_inst router-id=10.10.20.2\n/routing ospf area\nadd disabled=no instance=ospf_inst name=ospf_area\n/interface wireguard peers\nadd allowed-address=10.10.10.0/24 endpoint-address=34.67.44.17 endpoint-port=\\\n    40000 interface=wg0 name=peer1 public-key=\\\n    \"yFJkyQWtuM4HJZJ4HDKMmZf2kljWw0BvyACgB90JO3k=\"\n/ip address\nadd address=192.168.0.2/24 interface=ether1 network=192.168.0.0\nadd address=10.10.10.2/24 interface=wg0 network=10.10.10.0\nadd address=10.10.20.2 interface=lo network=10.10.20.2\nadd address=10.10.20.2 interface=loopback network=10.10.20.2\n/ip dhcp-client\nadd interface=ether1\n/ip firewall filter\nadd action=accept chain=input protocol=icmp\nadd action=accept chain=input dst-port=40000 protocol=udp\n/ip route\nadd check-gateway=ping distance=1 dst-address=0.0.0.0/0 gateway=192.168.0.1\n/routing ospf interface-template\nadd area=ospf_area disabled=no networks=0.0.0.0/0\n/system ntp client\nset enabled=yes\n/system ntp client servers\nadd address=pool.ntp.org"
+        ],
+        "stdout_lines": [
+            [
+                "# 2025-06-04 22:40:27 by RouterOS 7.19",
+                "# system id = xAXoqXaIYUJ",
+                "#",
+                "/interface bridge",
+                "add name=loopback",
+                "/interface ethernet",
+                "set [ find default-name=ether1 ] disable-running-check=no",
+                "/interface wireguard",
+                "add listen-port=34872 mtu=1420 name=wg0",
+                "/port",
+                "set 0 name=serial0",
+                "/routing ospf instance",
+                "add disabled=no name=ospf_inst router-id=10.10.20.2",
+                "/routing ospf area",
+                "add disabled=no instance=ospf_inst name=ospf_area",
+                "/interface wireguard peers",
+                "add allowed-address=10.10.10.0/24 endpoint-address=34.67.44.17 endpoint-port=\\",
+                "    40000 interface=wg0 name=peer1 public-key=\\",
+                "    \"yFJkyQWtuM4HJZJ4HDKMmZf2kljWw0BvyACgB90JO3k=\"",
+                "/ip address",
+                "add address=192.168.0.2/24 interface=ether1 network=192.168.0.0",
+                "add address=10.10.10.2/24 interface=wg0 network=10.10.10.0",
+                "add address=10.10.20.2 interface=lo network=10.10.20.2",
+                "add address=10.10.20.2 interface=loopback network=10.10.20.2",
+                "/ip dhcp-client",
+                "add interface=ether1",
+                "/ip firewall filter",
+                "add action=accept chain=input protocol=icmp",
+                "add action=accept chain=input dst-port=40000 protocol=udp",
+                "/ip route",
+                "add check-gateway=ping distance=1 dst-address=0.0.0.0/0 gateway=192.168.0.1",
+                "/routing ospf interface-template",
+                "add area=ospf_area disabled=no networks=0.0.0.0/0",
+                "/system ntp client",
+                "set enabled=yes",
+                "/system ntp client servers",
+                "add address=pool.ntp.org"
+            ]
+        ]
+    }
+}
+ok: [chr_2] => {
+    "export_conf": {
+        "changed": true,
+        "failed": false,
+        "stdout": [
+            "# 2025-06-04 22:40:27 by RouterOS 7.19\n# system id = Y6gyftBhijB\n#\n/interface bridge\nadd name=loopback\n/interface ethernet\nset [ find default-name=ether1 ] disable-running-check=no\n/interface wireguard\nadd listen-port=59532 mtu=1420 name=wg0\n/port\nset 0 name=serial0\n/routing ospf instance\nadd disabled=no name=ospf_inst router-id=10.10.20.3\n/routing ospf area\nadd disabled=no instance=ospf_inst name=ospf_area\n/interface wireguard peers\nadd allowed-address=10.10.10.0/24 endpoint-address=34.67.44.17 endpoint-port=\\\n    40000 interface=wg0 name=peer1 public-key=\\\n    \"yFJkyQWtuM4HJZJ4HDKMmZf2kljWw0BvyACgB90JO3k=\"\n/ip address\nadd address=10.10.10.3/24 interface=wg0 network=10.10.10.0\nadd address=192.168.0.3/24 interface=ether1 network=192.168.0.0\nadd address=10.10.20.3 interface=lo network=10.10.20.3\nadd address=10.10.20.3 interface=loopback network=10.10.20.3\n/ip dhcp-client\nadd interface=ether1\n/ip firewall filter\nadd action=accept chain=input protocol=icmp\nadd action=accept chain=input dst-port=40000 protocol=udp\nadd action=accept chain=input protocol=icmp\nadd action=accept chain=input dst-port=40000 protocol=udp\n/ip route\nadd check-gateway=ping distance=1 dst-address=0.0.0.0/0 gateway=192.168.0.1\n/routing ospf interface-template\nadd area=ospf_area disabled=no networks=0.0.0.0/0\n/system ntp client\nset enabled=yes\n/system ntp client servers\nadd address=pool.ntp.org"
+        ],
+        "stdout_lines": [
+            [
+                "# 2025-06-04 22:40:27 by RouterOS 7.19",
+                "# system id = Y6gyftBhijB",
+                "#",
+                "/interface bridge",
+                "add name=loopback",
+                "/interface ethernet",
+                "set [ find default-name=ether1 ] disable-running-check=no",
+                "/interface wireguard",
+                "add listen-port=59532 mtu=1420 name=wg0",
+                "/port",
+                "set 0 name=serial0",
+                "/routing ospf instance",
+                "add disabled=no name=ospf_inst router-id=10.10.20.3",
+                "/routing ospf area",
+                "add disabled=no instance=ospf_inst name=ospf_area",
+                "/interface wireguard peers",
+                "add allowed-address=10.10.10.0/24 endpoint-address=34.67.44.17 endpoint-port=\\",
+                "    40000 interface=wg0 name=peer1 public-key=\\",
+                "    \"yFJkyQWtuM4HJZJ4HDKMmZf2kljWw0BvyACgB90JO3k=\"",
+                "/ip address",
+                "add address=10.10.10.3/24 interface=wg0 network=10.10.10.0",
+                "add address=192.168.0.3/24 interface=ether1 network=192.168.0.0",
+                "add address=10.10.20.3 interface=lo network=10.10.20.3",
+                "add address=10.10.20.3 interface=loopback network=10.10.20.3",
+                "/ip dhcp-client",
+                "add interface=ether1",
+                "/ip firewall filter",
+                "add action=accept chain=input protocol=icmp",
+                "add action=accept chain=input dst-port=40000 protocol=udp",
+                "add action=accept chain=input protocol=icmp",
+                "add action=accept chain=input dst-port=40000 protocol=udp",
+                "/ip route",
+                "add check-gateway=ping distance=1 dst-address=0.0.0.0/0 gateway=192.168.0.1",
+                "/routing ospf interface-template",
+                "add area=ospf_area disabled=no networks=0.0.0.0/0",
+                "/system ntp client",
+                "set enabled=yes",
+                "/system ntp client servers",
+                "add address=pool.ntp.org"
+            ]
+        ]
+    }
+}
