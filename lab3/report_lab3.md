@@ -25,46 +25,31 @@ Date of finished: 18.06.2025
 
 ### Схема
 
-<img src="./pic/topology.jpg" style="width:400px;">
+<img src="./pic2/topology.jpg" style="width:400px;">
 
 ### 1. Поднять Netbox на дополнительной VM.
 
 В Google Cloud был создан второй сервер - netbox. На нем был поднят netbox:
 
-<img src="./pic/pic5.PNG" style="width:700px;">
-
-<img src="./pic/pic6.PNG" style="width:700px;">
-
-
-### Настройка с помощью Ansible
-
-Был прописан инвентарь hosts.ini:
-
-<img src="./pic/pic3.PNG" style="width:700px;">
-
-После все команды были прописаны в ямле (conf.yml, там нет экспорта это в другом файле):
-
-<img src="./pic/pic4.PNG" style="width:700px;">
-
-Проверяем, что есть связь с хостами:
-
 <img src="./pic/pic1.PNG" style="width:700px;">
 
-Запускаем:
+По адресу виртуальной машины открывается сайт:
 
 <img src="./pic/pic2.PNG" style="width:700px;">
 
-Проверяем работу ospf, ниже видно, что хосты видят соседа и проходит пинг:
 
-<img src="./pic/pic7.PNG" style="width:700px;">
+### 2. Заполнить всю возможную информацию о ваших CHR в Netbox.
 
-<img src="./pic/pic8.PNG" style="width:700px;">
+Была заполнена информация о клиентах:
 
-С помощью еще одного ямла был сделан экспорт (данные экспорта есть в папке лабы):
+<img src="./pic/pic3.PNG" style="width:700px;">
 
-<img src="./pic/pic9.PNG" style="width:550px;">
+### 3. Используя Ansible и роли для Netbox в тестовом режиме сохранить все данные из Netbox в отдельный файл, результат приложить в отчёт.
 
-Ошибок нет:
+Далее был прописан скрипт для получения данных из netbox в файл (результат в файле [netbox_export.json](https://github.com/MariamNaderi/2024_2025-network_programming-k3321-naderi_m_s/blob/main/lab3/netbox_export.json)):
 
-<img src="./pic/pic10.PNG" style="width:700px;">
+<img src="./pic/pic5.PNG" style="width:700px;">
+
+<img src="./pic/pic4.PNG" style="width:700px;">
+
 
