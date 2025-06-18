@@ -66,6 +66,20 @@ Date of finished: 18.06.2025
 
 <img src="./pic/pic9.PNG" style="width:300px;">
 
+### 5. Написать сценарий, позволяющий собрать серийный номер устройства и вносящий серийный номер в Netbox.
+
+Был написан сценарий для добавления данных в netbox (серийник и имя):
+
+<img src="./pic/pic13.PNG" style="width:700px;">
+
+<img src="./pic/pic10.PNG" style="width:700px;">
+
+Можно увидеть, что появлись серийные номера в netbox:
+
+<img src="./pic/pic11.PNG" style="width:300px;">
+
+<img src="./pic/pic12.PNG" style="width:300px;">
+
 
 
 
