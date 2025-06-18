@@ -52,4 +52,27 @@ Date of finished: 18.06.2025
 
 <img src="./pic/pic4.PNG" style="width:700px;">
 
+### 4. Написать сценарий, при котором на основе данных из Netbox можно настроить 2 CHR, изменить имя устройства, добавить IP адрес на устройство.
+
+Был написан сценарий для настройки клиентов:
+
+<img src="./pic/pic6.PNG" style="width:700px;">
+
+<img src="./pic/pic7.PNG" style="width:700px;">
+
+Можно увидеть, что у интерфейсов клиентов добавился адрес:
+
+<img src="./pic/pic8.PNG" style="width:300px;">
+
+<img src="./pic/pic9.PNG" style="width:300px;">
+
+
+
+
+
+
+
+
+
+
 
