@@ -70,7 +70,7 @@ Date of finished: 18.06.2025
 
 Был написан сценарий для добавления данных в netbox (серийник и имя):
 
-<img src="./pic/pic13.PNG" style="width:700px;">
+<img src="./pic/pic13.PNG" style="width:500px;">
 
 <img src="./pic/pic10.PNG" style="width:700px;">
 
