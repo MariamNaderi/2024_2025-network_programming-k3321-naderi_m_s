@@ -25,7 +25,7 @@ Date of finished: 18.06.2025
 
 ### Схема
 
-<img src="./pic2/topology.jpg" style="width:400px;">
+<img src="./pic/topology.png" style="width:400px;">
 
 ### 1. Поднять Netbox на дополнительной VM.
 
