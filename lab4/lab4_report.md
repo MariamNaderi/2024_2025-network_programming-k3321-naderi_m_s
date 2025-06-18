@@ -37,6 +37,8 @@ Date of finished: 18.06.2025
 
 ### 2. Развернуть Vagrant
 
+[basic.p4](https://github.com/MariamNaderi/2024_2025-network_programming-k3321-naderi_m_s/blob/main/lab4/basic.p4)
+
 <img src="./pic/pic2.PNG" style="width:700px;">
 
 <img src="./pic/pic3.PNG" style="width:700px;">
