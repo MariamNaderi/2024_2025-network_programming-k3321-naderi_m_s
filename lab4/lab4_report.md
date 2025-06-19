@@ -35,17 +35,29 @@ Date of finished: 18.06.2025
 
 <img src="./pic/pic1.PNG" style="width:700px;">
 
-### 2. Развернуть Vagrant
+### 2. Implementing Basic Forwarding 
 
 По заданию был исправлен файл [basic.p4](https://github.com/MariamNaderi/2024_2025-network_programming-k3321-naderi_m_s/blob/main/lab4/basic.p4).
 
-<img src="./pic/pic3.PNG" style="width:700px;">
+В файле было реализовано извлечение заголовков Ethernet и IPv4:
 
-<img src="./pic/pic4.PNG" style="width:700px;">
+<img src="./pic/pic3.PNG" style="width:500px;">
 
-<img src="./pic/pic5.PNG" style="width:700px;">
+Также было реализовано действие ipv4_forward (установка egress_spec, обновление MAC-адресов (src/dst), уменьшение TTL):
 
-<img src="./pic/pic2.PNG" style="width:700px;">
+<img src="./pic/pic4.PNG" style="width:500px;">
+
+Еще были добавлены IPv4- и Ethernet-заголовоки в пакет.
+
+<img src="./pic/pic5.PNG" style="width:500px;">
+
+Проверяем работу:
+
+<img src="./pic/pic2.PNG" style="width:500px;">
+
+### 3. Implementing Basic Tunneling  
+
+
 
 
 
